@@ -1,6 +1,6 @@
-site_name: Saleem's Productivity Tools
-site_url: https://saleem.net/productivity-tools/
-repo_url: https://github.com/saleemh/productivity-tools
+site_name: Saleem's Life Hacks
+site_url: https://saleem.net/life-hacks/
+repo_url: https://github.com/saleemh/life-hacks
 theme:
   name: material
   features:

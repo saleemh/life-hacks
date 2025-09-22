@@ -1,12 +1,12 @@
-# Productivity Tools
+# Life Hacks
 
-Static documentation site mirroring my current productivity tools list, published at `https://saleem.net/productivity-tools/`.
+Static documentation site for my life hacks and tips, published at `https://saleem.net/life-hacks/`.
 
 ## Overview
 
 - Built with MkDocs + Material theme
 - Deployed via GitHub Actions to my server using rsync over SSH
-- Served under Nginx at the `/productivity-tools/` path prefix
+- Served under Nginx at the `/life-hacks/` path prefix
 
 ## Local Development
 
@@ -22,7 +22,7 @@ Commands:
 
 ## Content
 
-Start with a single page mirroring the Notion content in `docs/index.md`.
+Content focused on life hacks and practical tips in `docs/index.md`.
 
 ## Deployment (GitHub Actions)
 
@@ -31,15 +31,15 @@ The workflow in `.github/workflows/deploy.yml` builds the site and deploys it vi
 - `SSH_HOST` — e.g., `saleem.net`
 - `SSH_USER` — deploy user with write access to target dir
 - `SSH_KEY` — private key for the deploy user (PEM format)
-- `SSH_TARGET_DIR` — e.g., `/var/www/productivity-tools/`
+- `SSH_TARGET_DIR` — e.g., `/var/www/life-hacks/`
 
 ## Nginx
 
 Serve the built site at the desired path prefix using an alias location block:
 
 ```
-location ^~ /productivity-tools/ {
-    alias /var/www/productivity-tools/;
+location ^~ /life-hacks/ {
+    alias /var/www/life-hacks/;
     index index.html;
     try_files $uri $uri/ =404;
     autoindex off;

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static documentation site built with MkDocs and Material theme that mirrors a productivity tools list. The site is deployed to `https://saleem.net/productivity-tools/` via GitHub Actions using rsync over SSH.
+This is a static documentation site built with MkDocs and Material theme for life hacks and tips. The site is deployed to `https://saleem.net/life-hacks/` via GitHub Actions using rsync over SSH.
 
 ## Development Commands
 
@@ -25,7 +25,7 @@ mkdocs build --strict  # Outputs to site/ directory
 
 **Manual deployment test:**
 ```bash
-rsync -az --delete site/ user@host:/var/www/productivity-tools/
+rsync -az --delete site/ user@host:/var/www/life-hacks/
 ```
 
 ## Architecture & Key Files
@@ -38,7 +38,7 @@ rsync -az --delete site/ user@host:/var/www/productivity-tools/
 - **`.github/workflows/`**:
   - `deploy.yml`: Builds and deploys via rsync on push to main/master
   - `validate.yml`: Validates build and checks links on PRs
-- **`deploy/nginx/`**: Example Nginx configuration for serving under `/productivity-tools/` subpath
+- **`deploy/nginx/`**: Example Nginx configuration for serving under `/life-hacks/` subpath
 
 ## Deployment Configuration
 
@@ -47,7 +47,7 @@ The site deploys automatically via GitHub Actions when pushing to `main` or `mas
 - `SSH_HOST`: Deploy target (e.g., saleem.net)
 - `SSH_USER`: Deploy user with write access
 - `SSH_KEY`: Private SSH key (PEM format)
-- `SSH_TARGET_DIR`: Target directory (e.g., /var/www/productivity-tools/)
+- `SSH_TARGET_DIR`: Target directory (e.g., /var/www/life-hacks/)
 - `SSH_PORT`: Optional custom SSH port
 
 ## Content Guidelines
@@ -66,4 +66,4 @@ The site deploys automatically via GitHub Actions when pushing to `main` or `mas
 
 ## Server Configuration
 
-The site is served via Nginx under the `/productivity-tools/` path prefix using an alias location block. The example configuration is in `deploy/nginx/productivity-tools.conf`.
+The site is served via Nginx under the `/life-hacks/` path prefix using an alias location block. The example configuration is in `deploy/nginx/life-hacks.conf`.

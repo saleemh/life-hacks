@@ -1,11 +1,11 @@
 # Productivity Tools – Completion Checklist
 
-Use this checklist to finish setup, deploy safely, and verify the docs site at `https://saleem.net/productivity-tools/`.
+Use this checklist to finish setup, deploy safely, and verify the docs site at `https://saleem.net/life-hacks/`.
 
 ## 1) GitHub Repo
 - [ ] Set remote to your repo
-  - SSH: `git remote set-url origin git@github.com:saleemh/productivity-tools.git`
-  - or HTTPS: `git remote set-url origin https://github.com/saleemh/productivity-tools.git`
+  - SSH: `git remote set-url origin git@github.com:saleemh/life-hacks.git`
+  - or HTTPS: `git remote set-url origin https://github.com/saleemh/life-hacks.git`
 - [ ] Choose default branch
   - Use `main`: `git branch -M main`
   - or keep `master` (workflow supports both)
@@ -16,7 +16,7 @@ Use this checklist to finish setup, deploy safely, and verify the docs site at `
 - [ ] `SSH_HOST` = `saleem.net`
 - [ ] `SSH_USER` = deploy user on server (e.g., `deploy`)
 - [ ] `SSH_KEY` = private key (PEM) for `SSH_USER`
-- [ ] `SSH_TARGET_DIR` = `/var/www/productivity-tools/`
+- [ ] `SSH_TARGET_DIR` = `/var/www/life-hacks/`
 - [ ] (Optional) `SSH_PORT` = custom SSH port if not 22
 
 ## 3) Server Prep (run on saleem.net)
@@ -26,16 +26,16 @@ Use this checklist to finish setup, deploy safely, and verify the docs site at `
   - Place public key matching `SSH_KEY` into `/home/deploy/.ssh/authorized_keys`
   - Test: `ssh deploy@saleem.net 'echo ok'`
 - [ ] Create target directory and set perms
-  - `sudo mkdir -p /var/www/productivity-tools`
-  - `sudo chown -R deploy:www-data /var/www/productivity-tools`
-  - `sudo chmod -R 755 /var/www/productivity-tools`
+  - `sudo mkdir -p /var/www/life-hacks`
+  - `sudo chown -R deploy:www-data /var/www/life-hacks`
+  - `sudo chmod -R 755 /var/www/life-hacks`
 
 ## 4) Nginx Location Block (in saleem.net server block)
 Add a dedicated prefix location that won’t interfere with other routes:
 
 ```
-location ^~ /productivity-tools/ {
-    alias /var/www/productivity-tools/;
+location ^~ /life-hacks/ {
+    alias /var/www/life-hacks/;
     index index.html;
     try_files $uri $uri/ =404;
     autoindex off;
@@ -51,12 +51,12 @@ location ^~ /productivity-tools/ {
 - [ ] Watch Actions → `Deploy` job; confirm build + rsync succeed
 
 ## 6) Verify Live Site
-- [ ] Check directory on server: `ls -la /var/www/productivity-tools | head`
-- [ ] Browse: `https://saleem.net/productivity-tools/`
+- [ ] Check directory on server: `ls -la /var/www/life-hacks | head`
+- [ ] Browse: `https://saleem.net/life-hacks/`
 - [ ] Spot-check links and assets load correctly
 
 ## 7) Mirror Notion Content (initial manual step)
-- [ ] Export or copy content from Notion: `http://notion.saleem.net/productivity-tools`
+- [ ] Export or copy content from Notion: `http://notion.saleem.net/life-hacks`
 - [ ] Paste into `docs/index.md` (replace placeholder sections)
 - [ ] Commit and push to deploy
 
@@ -68,9 +68,9 @@ location ^~ /productivity-tools/ {
   - `npm i -D markdownlint-cli` and a simple job to run `npx markdownlint .` (or use Docker action)
 
 ## 9) Optional Staging Flow
-- [ ] Create `/var/www/productivity-tools-test/` and add a temp location `^~ /productivity-tools-test/`
+- [ ] Create `/var/www/life-hacks-test/` and add a temp location `^~ /life-hacks-test/`
 - [ ] Point `SSH_TARGET_DIR` to test path for first deploy
-- [ ] Verify, then switch back to `/productivity-tools/`
+- [ ] Verify, then switch back to `/life-hacks/`
 
 ## 10) Future: Notion Sync Automation
 - [ ] Choose language (Python or Node) for a small sync script
@@ -88,4 +88,4 @@ location ^~ /productivity-tools/ {
 - Local dev: `pip install -r requirements.txt && mkdocs serve`
 - Build locally: `mkdocs build --strict`
 - Manual rsync (for testing):
-  - `rsync -az --delete site/ deploy@saleem.net:/var/www/productivity-tools/`
+  - `rsync -az --delete site/ deploy@saleem.net:/var/www/life-hacks/`
